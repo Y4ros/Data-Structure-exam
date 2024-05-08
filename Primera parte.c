@@ -20,9 +20,9 @@ struct Producto {
 int main()
 {
     printf("Perez Peres Moises Yaroslav\n");
-    printf("Santana Laura Alejandra\n");
+    printf("Santana Mart�nez Laura Alejandra\n");
     printf("Programacion Estructurada\n");
-    printf("Tienda Doña Lucha\n");
+    printf("Tienda Do�a Lucha\n");
     menu();
 
     return 0;
@@ -39,12 +39,12 @@ int menu()
     do {
         while (regresar) {
             printf("\nMENU:\n");
-            printf("1. Opción 1\n");
-            printf("2. Opción 2\n");
-            printf("3. Opción 3\n");
-            printf("4. Opción 4\n");
+            printf("1. Opcion 1\n");
+            printf("2. Opcion 2\n");
+            printf("3. Opcion 3\n");
+            printf("4. Opcion 4\n");
             printf("5. Salir\n");
-            printf("Ingrese su opción: ");
+            printf("Ingrese su opcion: ");
             scanf("%d", &opcion);
             
             switch(opcion) {
@@ -54,7 +54,7 @@ int menu()
                     
                     // Verificar que la cantidad de productos a ingresar no exceda el máximo permitido
                     if (cantidadProductos > MAX_PRODUCTOS) {
-                        printf("¡Error! La cantidad de productos excede el máximo permitido.\n");
+                        printf("�Error! La cantidad de productos excede el maximo permitido.\n");
                         break;
                     }
                     
@@ -74,28 +74,29 @@ int menu()
                     printf("Saliendo del programa...\n");
                     return 0;
                 default:
-                    printf("Opción no válida. Intente de nuevo.\n");
+                    printf("Opcion no valida. Intente de nuevo.\n");
             }
             
-            printf("\n¿Desea regresar al menú principal? (1 = Sí, 0 = No): ");
+            printf("\n�Desea regresar al menu principal? (1 = Si, 0 = No): ");
             scanf("%d", &regresar);
         }
         
-        regresar = 1; // Reiniciar regresar para mostrar el menú principal nuevamente
+        regresar = 1; // Reiniciar regresar para mostrar el menu principal nuevamente
         
-    } while(opcion != 5); // El bucle se repite hasta que se seleccione la opción "Salir" (5)
+    } while(opcion != 5); // El bucle se repite hasta que se seleccione la opcion "Salir" (5)
     
     return 0;
 }
 
-// Función para ingresar productos
+// Funcion para ingresar productos
 void ingresarProductos(struct Producto productos[], int cantidad) {
-    for (int i = 0; i < cantidad; i++) {
+	int i;
+    for (i = 0; i < cantidad; i++) {
         printf("\nIngrese el nombre del producto %d: ", i + 1);
         scanf("%s", productos[i].nombre);
         printf("Ingrese el precio del producto %d: ", i + 1);
         scanf("%f", &productos[i].precio);
-        printf("Ingrese el código del producto %d (debe ser un número de 3 dígitos): ", i + 1);
+        printf("Ingrese el codigo del producto %d (debe ser un numero de 3 digitos): ", i + 1);
         scanf("%d", &productos[i].codigo);
     }
     printf("Se han ingresado los productos correctamente.\n");
