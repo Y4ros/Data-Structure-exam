@@ -107,6 +107,7 @@ int opc2()
 
 int opc3()
 {
+  printf("Pude hacer un cambio\n");
     return 0;
 }
 
