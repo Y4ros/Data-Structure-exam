@@ -7,7 +7,7 @@ struct Producto {
     char nombre[50];
     float precio;
     int codigo;
-};
+	};
 typedef struct Producto Tienda;//Renombre de la struct como Tienda
 
 //Prototipado de funciones
@@ -32,12 +32,11 @@ int main()
 int menu()
 {
     int opcion;//Variable con la que se maneja el switch del menú
-    int regresar = 1; // Variable para regresar al menú
+    int regresar = 1; // Variable para regresar al menú luego de cada proceso
     Tienda productos[MAX_PRODUCTOS];//Vector combinado con struct
-    int cantidadProductos = 0;//Variable con la que se maneja el límite de productos
-    int ProductoIngresado = 0;//Bandera de si se ha ingresado o no un producto
+    int cantidadProductos = 0;//Variable con la que se maneja el registro de productos
     
-    while(opcion != 5) {
+    do{
         	system("CLS");
             printf("\nMEN%c:\n",233);
             printf("1. Ingresar productos\n");
@@ -52,31 +51,33 @@ int menu()
                 case 1:
                     // Llamar a la funcion para ingresar productos
                     ingresarProductos(productos, &cantidadProductos);
-                    ProductoIngresado = 1;//Bandera Verde
                     break;
                     
                 case 2:
-                	//Verifica que se haya registrado al menos 1 producto
-                	if(ProductoIngresado==0){
-                		printf("Primero ingrese productos porfavor.\n");
+                	//Comprobación de registro
+					if(cantidadProductos==0){
+						printf("No hay productos registrados.\n");
+						break;
 					}
                     // Llamar a la funcion para buscar un producto
                     buscarProductoPorCodigo(productos, cantidadProductos);
                     break;
                     
                 case 3:
-                	//Verifica que se haya registrado al menos 1 producto
-                	if(ProductoIngresado==0){
-                		printf("Primero ingrese productos porfavor.\n");
+                	//Comprobación de registro
+					if(cantidadProductos==0){
+						printf("No hay productos registrados.\n");
+						break;
 					}
                     // Llamar a la funcion para eliminar un producto
                     eliminarProducto(productos, &cantidadProductos);
                     break;
                     
                 case 4:
-                	//Verifica que se haya registrado al menos 1 producto
-                	if(ProductoIngresado==0){
-                		printf("Primero ingrese productos porfavor.\n");
+                	//Comprobación de registro
+					if(cantidadProductos==0){
+						printf("No hay productos registrados.\n");
+						break;
 					}
 						// Llamar a la funcion para mostrar productos
 						mostrarProductos(productos, cantidadProductos);
@@ -90,14 +91,16 @@ int menu()
                     printf("Opci%cn no v%clida. Intente de nuevo.\n",162,160);
             }
             
-            printf("\n%cDesea regresar al men%c principal? (1 = Si, 0 = No): ",168,163);
-            scanf("%d", &regresar);
-            if(regresar == 0){
-            	return 0;
+            if(opcion!=5){
+            	printf("\n%cDesea regresar al men%c principal? (1 = Si, 0 = No): ",168,163);
+            	scanf("%d", &regresar);
+            	if(regresar == 0){
+            		return 0;
+				}
 			}
            
         system("PAUSE");
-    } while(opcion != 5); // El bucle se repite hasta que se seleccione la opcion "Salir" (5)
+    } while(opcion != 5||regresar!=0); // El bucle se repite hasta que se seleccione la opcion "Salir" (5)
     
     return 0;
 }
