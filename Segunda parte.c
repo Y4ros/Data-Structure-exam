@@ -11,6 +11,8 @@ struct Producto {
 typedef struct Producto Tienda;//Renombre de la struct como Tienda
 
 //Prototipado de funciones
+
+int menu();
 	/*ingresarProductos con variable puntero para que al momento de ingresar nuevamente productos
 	o asi se modifique global y muestre todas en lugar de solo las ultimas agregadas*/
 void ingresarProductos(struct Producto productos[], int *cantidad);
