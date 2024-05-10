@@ -109,7 +109,7 @@ int menu()
 
 // Funcion para ingresar productos
 void ingresarProductos(Tienda productos[], int *cantidad) {
-	int i;
+	int i, j;
 	int cantidadProductos;
 	printf("Ingrese la cantidad de productos a ingresar: ");
     scanf("%d", &cantidadProductos);
@@ -125,8 +125,20 @@ void ingresarProductos(Tienda productos[], int *cantidad) {
         scanf("%s", productos[i].nombre);
         printf("Ingrese el precio del producto %d: ", i + 1);
         scanf("%f", &productos[i].precio);
-        printf("Ingrese el c%cdigo del producto %d (debe ser un n%cmero de 3 digitos): ",162, i + 1,163);
-        scanf("%d", &productos[i].codigo);
+        //Comprobación para evitar registrar un codigo duplicado
+        do {
+            printf("Ingrese el c%cdigo del producto %d (debe ser un n%cmero de 3 d%cgitos): ",162, i + 1,163,161);
+            scanf("%d", &productos[i].codigo);
+            for (j = 0; j < *cantidad; j++) { //Ciclo for aninado para la revisión
+                if (productos[j].codigo == productos[i].codigo) {
+                    printf("%cError! El c%cdigo ingresado ya existe. Por favor, ingrese un c%cdigo diferente.\n",173,162,162);
+                    break;
+                }
+            }
+            if (j == *cantidad) {
+                break; // Si el código es único, se sale del bucle do-while
+            }
+        } while (1); //Condicional hecha para que el ciclo se repita siempre, se rompe con los breaks de cada caso
     }
     printf("Se han ingresado los productos correctamente.\n");
     *cantidad+=cantidadProductos;// Se actualiza la cantidad
