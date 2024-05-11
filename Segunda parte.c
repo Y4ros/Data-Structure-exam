@@ -102,7 +102,7 @@ int menu()
 			}
            
         system("PAUSE");
-    } while(opcion != 5||regresar!=0); // El bucle se repite hasta que se seleccione la opcion "Salir" (5)
+    } while(opcion != 5); // El bucle se repite hasta que se seleccione la opcion "Salir" (5)
     
     return 0;
 }
