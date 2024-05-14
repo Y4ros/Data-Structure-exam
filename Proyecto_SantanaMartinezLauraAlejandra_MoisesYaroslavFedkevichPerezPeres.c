@@ -2,19 +2,17 @@
 #include <stdlib.h>
 
 #define MAX_PRODUCTOS 10
-
+// Definir la estructura del producto
 struct Producto {
     char nombre[50];
     float precio;
     int codigo;
 	};
-typedef struct Producto Tienda;//Renombre de la struct como Tienda
+	
+typedef struct Producto Tienda;// Renombrar la estructura como Tienda
 
 //Prototipado de funciones
-
 int menu();
-	/*ingresarProductos con variable puntero para que al momento de ingresar nuevamente productos
-	o asi se modifique global y muestre todas en lugar de solo las ultimas agregadas*/
 void ingresarProductos(struct Producto productos[], int *cantidad);
 void mostrarProductos(struct Producto productos[], int cantidad);
 void buscarProductoPorCodigo(struct Producto productos[], int cantidad);
@@ -22,6 +20,7 @@ void eliminarProducto(struct Producto productos[], int *cantidad);
 
 int main()
 {
+	// Título del proyecto y nombres de los autores
     printf("Perez Peres Moises Yaroslav\n");
     printf("Santana Mart%cnez Laura Alejandra\n",161);
     printf("Programaci%cn Estructurada\n",162);
@@ -122,22 +121,29 @@ void ingresarProductos(Tienda productos[], int *cantidad) {
     
     for (i = *cantidad ; i < (*cantidad + cantidadProductos) ; i++) {
         printf("\nIngrese el nombre del producto %d: ", i + 1);
-        scanf("%s", productos[i].nombre);
+        fflush(stdin);
+        gets(productos[i].nombre);
         printf("Ingrese el precio del producto %d: ", i + 1);
         scanf("%f", &productos[i].precio);
         //Comprobación para evitar registrar un codigo duplicado
         do {
             printf("Ingrese el c%cdigo del producto %d (debe ser un n%cmero de 3 d%cgitos): ",162, i + 1,163,161);
             scanf("%d", &productos[i].codigo);
-            for (j = 0; j < *cantidad; j++) { //Ciclo for aninado para la revisión
-                if (productos[j].codigo == productos[i].codigo) {
-                    printf("%cError! El c%cdigo ingresado ya existe. Por favor, ingrese un c%cdigo diferente.\n",173,162,162);
-                    break;
-                }
-            }
-            if (j == *cantidad) {
-                break; // Si el código es único, se sale del bucle do-while
-            }
+            if(productos[i].codigo > 999){
+            	printf("%cError! El c%cdigo debe ser un n%cmero de 3 d%cgitos.\n",173,162,163,161);
+			}
+			else{
+				for (j = 0; j < *cantidad; j++) { //Ciclo for aninado para la revisión
+	                if (productos[j].codigo == productos[i].codigo) {
+	                    printf("%cError! El c%cdigo ingresado ya existe. Por favor, ingrese un c%cdigo diferente.\n",173,162,162);
+	                    break;
+	                }
+	            }
+	            if (j == *cantidad) {
+	                break; // Si el código es único, se sale del bucle do-while
+	            }
+			}
+            
         } while (1); //Condicional hecha para que el ciclo se repita siempre, se rompe con los breaks de cada caso
     }
     printf("Se han ingresado los productos correctamente.\n");
